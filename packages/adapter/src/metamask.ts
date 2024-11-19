@@ -1,5 +1,5 @@
 import type { RequestArguments } from '@metamask/providers/dist/BaseProvider';
-import type { AlephRPCRequest, Result } from 'azero-wallet-types';
+import type { PhronRPCRequest, Result } from 'phron-wallet-types';
 import { getSnapId } from './consts';
 
 const walletRequest = async (requestArgs: RequestArguments): Promise<any> => {
@@ -10,14 +10,14 @@ const walletRequest = async (requestArgs: RequestArguments): Promise<any> => {
 };
 
 /**
- * Send a AlephRPCRequest to snap.
+ * Send a PhronRPCRequest to snap.
  *
- * @param request - The `AlephRPCRequest` request to send.
+ * @param request - The `PhronRPCRequest` request to send.
  * @returns The result of the request.
  * @throws If fails to send the request.
  */
 export const sendSnapMethod = async <TData>(
-  request: AlephRPCRequest,
+  request: PhronRPCRequest,
 ): Promise<Result<TData>> =>
   walletRequest({
     method: 'wallet_invokeSnap',

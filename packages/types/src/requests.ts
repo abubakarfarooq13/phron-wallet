@@ -6,16 +6,16 @@ import type {
   TransferNativeAssetRequest,
 } from './methods';
 
-export type AlephRPCRequest =
+export type PhronRPCRequest =
   | GetAccountRequest
   | SignSignerPayloadRequest
   | SignAndSendTransactionRequest
   | TransferNativeAssetRequest
   | SetRpcUrlRequest;
 
-export type RequestMethod = AlephRPCRequest['method'];
+export type RequestMethod = PhronRPCRequest['method'];
 
-export type RequestParameters = AlephRPCRequest['params'];
+export type RequestParameters = PhronRPCRequest['params'];
 
 export type WalletEnableRequest = {
   method: 'wallet_enable';
@@ -28,7 +28,7 @@ export type GetSnapsRequest = {
 
 export type SnapRpcMethodRequest = {
   method: string;
-  params: [AlephRPCRequest];
+  params: [PhronRPCRequest];
 };
 
 export type MetamaskRpcRequest =

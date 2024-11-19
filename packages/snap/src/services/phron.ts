@@ -1,32 +1,31 @@
 import { ApiPromise, HttpProvider } from '@polkadot/api';
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
 import type { HexString } from '@polkadot/util/types';
-import type { TransactionInfo, TransactionPayload } from 'azero-wallet-types';
-
+import type { TransactionInfo, TransactionPayload } from '../../../types/src/index.js';
 import type { SignerPayloadJSON } from '@polkadot/types/types';
 import { getDefaultAddress, getDefaultKeyringPair } from '../account';
 import { showConfirmTransactionDialog } from '../metamask/ui';
 
-export class PolkadotService {
-  public static defaultRpcUrl = 'https://rpc.azero.dev/';
+export class PhronService {
+  public static defaultRpcUrl = 'https://testnet.phron.ai/';
 
   public static api: ApiPromise;
 
-  private static inner: PolkadotService;
+  private static inner: PhronService;
 
   private constructor(api: ApiPromise) {
-    PolkadotService.api = api;
+    PhronService.api = api;
   }
 
-  public static get instance(): PolkadotService {
+  public static get instance(): PhronService {
     if (!this.inner) {
-      throw new Error('PolkadotService has not been initialized');
+      throw new Error('PhronService has not been initialized');
     }
     return this.inner;
   }
 
   public static async init(
-    rpcUrl: string = PolkadotService.defaultRpcUrl,
+    rpcUrl: string = PhronService.defaultRpcUrl,
   ): Promise<void> {
     if (this.inner) {
       return;
@@ -34,7 +33,7 @@ export class PolkadotService {
 
     const provider = new HttpProvider(rpcUrl);
     const api = await ApiPromise.create({ provider });
-    this.inner = new PolkadotService(api);
+    this.inner = new PhronService(api);
   }
 
   public static async sendTransactionWithSignature(
@@ -72,8 +71,8 @@ export class PolkadotService {
   public static async signAndSendExtrinsicTransaction(
     txPayload: TransactionPayload,
   ): Promise<TransactionInfo> {
-    const signed = await PolkadotService.signSignerPayload(txPayload.payload);
-    return PolkadotService.sendTransactionWithSignature(txPayload, signed);
+    const signed = await PhronService.signSignerPayload(txPayload.payload);
+    return PhronService.sendTransactionWithSignature(txPayload, signed);
   }
 
   public static async signSignerPayload(

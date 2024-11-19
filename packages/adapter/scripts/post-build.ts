@@ -4,7 +4,7 @@ import replace from 'replace-in-file';
 // eslint-disable-next-line node/no-process-env
 const DEV = process.env.NODE_ENV === 'development';
 
-const SNAP_ID = DEV ? 'local:http://localhost:8080' : 'npm:azero-wallet';
+const SNAP_ID = DEV ? 'local:http://localhost:8080' : 'npm:phron-wallet';
 
 // eslint-disable-next-line node/no-sync
 replace.replaceInFileSync({

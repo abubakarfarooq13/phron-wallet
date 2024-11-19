@@ -1,9 +1,9 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import { SubmittableExtrinsic } from '@polkadot/api/types';
-import { TransactionPayload } from 'azero-wallet-types';
+import { TransactionPayload } from 'phron-wallet-types';
 
 export const getApi = async () => {
-  const wsProvider = new WsProvider('wss://ws.test.azero.dev/');
+  const wsProvider = new WsProvider('wss://testnet.phron.ai/');
   return ApiPromise.create({ provider: wsProvider });
 };
 

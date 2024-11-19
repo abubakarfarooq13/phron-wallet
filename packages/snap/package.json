@@ -1,9 +1,9 @@
 {
-  "name": "azero-wallet",
+  "name": "phron-wallet",
   "version": "0.3.6",
-  "description": "Aleph Zero Wallet snap",
+  "description": "Phron Wallet snap",
   "keywords": [
-    "aleph",
+    "phron",
     "zero",
     "wallet",
     "metamask",
@@ -49,7 +49,7 @@
     "@polkadot/util": "^10.1.14",
     "@polkadot/util-crypto": "^10.1.14",
     "@polkadot/wasm-crypto": "^6.3.1",
-    "azero-wallet-types": "^0.3.0",
+    "phron-wallet-types": "^0.3.0",
     "eth-rpc-errors": "^4.0.3",
     "sha3": "^2.1.4"
   },

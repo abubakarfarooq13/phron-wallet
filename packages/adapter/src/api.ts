@@ -8,7 +8,7 @@ import type {
   SignSignerPayloadResult,
   TransferNativeAssetRequestParams,
   TransferNativeAssetResult,
-} from 'azero-wallet-types';
+} from 'phron-wallet-types';
 
 import { sendSnapMethod } from './metamask';
 

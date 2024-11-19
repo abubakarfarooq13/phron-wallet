@@ -1,15 +1,15 @@
-import type { AlephState, AlephWalletState } from 'azero-wallet-types';
+import type { PhronState, PhronWalletState } from '../../../types/src/index.js';
 
 import { CURRENT_STATE_VERSION } from '../const';
 import { SnapStorage } from '../metamask/storage';
 
 const clone = (object: any) => JSON.parse(JSON.stringify(object));
 
-const emptyAccountState = {} as AlephWalletState;
+const emptyAccountState = {} as PhronWalletState;
 
 export const getEmptyAccountState = () => clone(emptyAccountState);
 
-const initialSnapState: AlephState = {
+const initialSnapState: PhronState = {
   v1: {
     walletState: {},
     currentAccount: '',
@@ -23,7 +23,7 @@ export const getInitialSnapState = () => clone(initialSnapState);
 
 const STATE_VERSION = 'v1';
 export class StorageService {
-  static instance: AlephState;
+  static instance: PhronState;
 
   static async init(): Promise<void> {
     const state = await SnapStorage.load();
@@ -45,11 +45,11 @@ export class StorageService {
     this.instance = state;
   }
 
-  static get(): AlephState {
+  static get(): PhronState {
     return this.instance;
   }
 
-  static set(state: AlephState): void {
+  static set(state: PhronState): void {
     this.instance = state;
   }
 

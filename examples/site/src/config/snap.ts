@@ -4,4 +4,4 @@
  */
 export const defaultSnapOrigin =
   // eslint-disable-next-line no-restricted-globals
-  process.env.REACT_APP_SNAP_ORIGIN ?? 'npm:azero-wallet';
+  process.env.REACT_APP_SNAP_ORIGIN ?? 'npm:phron-wallet';

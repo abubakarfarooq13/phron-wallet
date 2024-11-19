@@ -1,15 +1,15 @@
 import type { SnapsGlobalObject } from '@metamask/snaps-types';
-import type { SetRpcUrlRequestParams } from 'azero-wallet-types';
-import { isError } from 'azero-wallet-types';
+import type { SetRpcUrlRequestParams } from 'phron-wallet-types';
+import { isError } from 'phron-wallet-types';
 
 import { onRpcRequest } from '../../src';
-import { PolkadotService } from '../../src/services/polkadot';
+import { PhronService } from '../../src/services/phron';
 import { StorageService } from '../../src/services/storage';
 import type { SnapMock } from '../helpers/snapMock';
 import { createMockSnap } from '../helpers/snapMock';
 
 jest
-  .spyOn(PolkadotService, 'init')
+  .spyOn(PhronService, 'init')
   .mockImplementation(async () => Promise.resolve());
 
 describe('setRpcUrl', () => {
@@ -22,14 +22,14 @@ describe('setRpcUrl', () => {
   });
 
   it('should set the rpc url', async () => {
-    const polkadotInitSpy = jest.spyOn(PolkadotService, 'init');
+    const phronInitSpy = jest.spyOn(PhronService, 'init');
     const setRpcUrlSpy = jest.spyOn(StorageService, 'setRpcUrl');
 
     const origin = 'localhost';
     expect(snapMock.snapState?.v1.config.domainConfig[origin]).toBeUndefined();
 
     const requestParams: SetRpcUrlRequestParams = {
-      rpcUrl: 'wss://rpc.polkadot.io',
+      rpcUrl: 'wss://testnet.phron.ai',
     };
     const res = await onRpcRequest({
       origin,
@@ -41,7 +41,7 @@ describe('setRpcUrl', () => {
       },
     }).then(JSON.parse);
 
-    expect(polkadotInitSpy).toHaveBeenCalledTimes(2); // Once for snap init, and once for setRpcUrl request
+    expect(phronInitSpy).toHaveBeenCalledTimes(2); // Once for snap init, and once for setRpcUrl request
     expect(setRpcUrlSpy).toHaveBeenCalled();
     expect(snapMock.snapState?.v1.config.domainConfig[origin].rpcUrl).toEqual(
       requestParams.rpcUrl,

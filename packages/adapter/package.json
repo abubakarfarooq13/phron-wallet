@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@metamask/providers": "^14.0.2",
-    "azero-wallet-types": "^0.3.0"
+    "phron-wallet-types": "^0.3.0"
   },
   "devDependencies": {
     "replace-in-file": "^6.3.5"

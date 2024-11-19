@@ -1,14 +1,14 @@
-import type { AlephState } from 'azero-wallet-types';
+import type { PhronState } from '../../../types/src/index.js';
 
 export class SnapStorage {
-  static async load(): Promise<AlephState> {
+  static async load(): Promise<PhronState> {
     return snap.request({
       method: 'snap_manageState',
       params: { operation: 'get' },
-    }) as Promise<AlephState>;
+    }) as Promise<PhronState>;
   }
 
-  static async save(state: AlephState): Promise<void> {
+  static async save(state: PhronState): Promise<void> {
     await snap.request({
       method: 'snap_manageState',
       params: {

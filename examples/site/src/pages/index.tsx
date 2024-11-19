@@ -1,4 +1,4 @@
-import * as azeroSnap from 'azero-wallet-adapter';
+import * as phronSnap from 'phron-wallet-adapter';
 import { isSuccess, TransactionInfo } from 'azero-wallet-types';
 import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -112,11 +112,11 @@ const Index = () => {
 
   const [account, setAccount] = useState<string | null>(null);
   const [txInfo, setTxInfo] = useState<TransactionInfo | null>(null);
-  const [rpcUrl, setRpcUrl] = useState<string>('https://test.azero.dev/');
+  const [rpcUrl, setRpcUrl] = useState<string>('https://testnet.phron.ai/');
 
   useEffect(() => {
     const fetchAccount = async () => {
-      const accountResult = await azeroSnap.getAccount();
+      const accountResult = await phronSnap.getAccount();
       if (isSuccess(accountResult)) {
         setAccount(accountResult.data.address);
       } else {
@@ -172,7 +172,7 @@ const Index = () => {
   return (
     <Container>
       <Heading>
-        Welcome to <Span>azero-wallet</Span>
+        Welcome to <Span>phron-wallet</Span>
       </Heading>
       <Subtitle>Get started by editing by installing the snap:</Subtitle>
       <CardContainer>
@@ -226,10 +226,10 @@ const Index = () => {
         )}
         <Card
           content={{
-            title: 'Active Aleph-Zero Account',
+            title: 'Active Phron Account',
             description: `Account derived from your MetaMask account: ${
               account ?? '...'
-            }\nMake sure to fund it with some testnet $AZERO to be able to send transactions.`,
+            }\nMake sure to fund it with some testnet $PHRON to be able to send transactions.`,
           }}
           disabled={!state.installedSnap}
           fullWidth={

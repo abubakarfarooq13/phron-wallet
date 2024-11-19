@@ -4,14 +4,14 @@ import {
   setSnapId,
   signAndSendExtrinsicTransactionPayload,
   transferNativeAsset,
-} from 'azero-wallet-adapter';
+} from 'phron-wallet-adapter';
 import {
   TransferNativeAssetRequestParams,
   SignAndSendTransactionRequestParams,
   isSuccess,
-} from 'azero-wallet-types';
+} from 'phron-wallet-types';
 
-import { generateTransactionPayload, getApi } from './polkadot';
+import { generateTransactionPayload, getApi } from './phron';
 import { defaultSnapOrigin } from '../config/snap';
 import { GetSnapsResponse, Snap } from '../types';
 

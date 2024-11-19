@@ -1,9 +1,9 @@
 import type { SnapsGlobalObject } from '@metamask/snaps-types';
-import type { SignAndSendTransactionRequestParams } from 'azero-wallet-types';
-import { isError } from 'azero-wallet-types';
+import type { SignAndSendTransactionRequestParams } from 'phron-wallet-types';
+import { isError } from 'phron-wallet-types';
 
 import { onRpcRequest } from '../../src';
-import { PolkadotService } from '../../src/services/polkadot';
+import { PhronService } from '../../src/services/phron';
 import {
   fakeSignature,
   fakeTransactionInfo,
@@ -13,7 +13,7 @@ import type { SnapMock } from '../helpers/snapMock';
 import { createMockSnap } from '../helpers/snapMock';
 
 jest
-  .spyOn(PolkadotService, 'init')
+  .spyOn(PhronService, 'init')
   .mockImplementation(async () => Promise.resolve());
 
 describe('signAndSendTransaction', () => {
@@ -26,12 +26,12 @@ describe('signAndSendTransaction', () => {
   });
 
   it('should sign and send transaction payload', async () => {
-    const polkadotInitSpy = jest.spyOn(PolkadotService, 'init');
-    const polkadotSignPayload = jest
-      .spyOn(PolkadotService, 'signSignerPayload')
+    const phronInitSpy = jest.spyOn(PhronService, 'init');
+    const phronSignPayload = jest
+      .spyOn(PhronService, 'signSignerPayload')
       .mockImplementation(async () => Promise.resolve(fakeSignature));
-    const polkadotSignAndSendSpy = jest
-      .spyOn(PolkadotService, 'sendTransactionWithSignature')
+    const phronSignAndSendSpy = jest
+      .spyOn(PhronService, 'sendTransactionWithSignature')
       .mockImplementation(async () => Promise.resolve(fakeTransactionInfo));
 
     const requestParams: SignAndSendTransactionRequestParams = {
@@ -47,9 +47,9 @@ describe('signAndSendTransaction', () => {
       },
     }).then(JSON.parse);
 
-    expect(polkadotInitSpy).toHaveBeenCalled();
-    expect(polkadotSignPayload).toHaveBeenCalled();
-    expect(polkadotSignAndSendSpy).toHaveBeenCalled();
+    expect(phronInitSpy).toHaveBeenCalled();
+    expect(phronSignPayload).toHaveBeenCalled();
+    expect(phronSignAndSendSpy).toHaveBeenCalled();
 
     if (isError(res)) {
       throw new Error(res.error);

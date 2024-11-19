@@ -1,4 +1,4 @@
-export type AlephState = {
+export type PhronState = {
   /**
    * Version 1 of Aleph snap state
    */
@@ -6,7 +6,7 @@ export type AlephState = {
     /**
      * Account specific storage
      */
-    walletState: Record<string, AlephWalletState>;
+    walletState: Record<string, PhronWalletState>;
     /**
      * Current account
      */
@@ -14,15 +14,15 @@ export type AlephState = {
     /**
      * Configuration for Aleph Zero
      */
-    config: AlephConfig;
+    config: PhronConfig;
   };
 };
 
 /**
  * Configuration for Aleph Zero snap
  */
-export type AlephConfig = {
-  domainConfig: AlephDomainConfig;
+export type PhronConfig = {
+  domainConfig: PhronDomainConfig;
 };
 
 /**
@@ -31,20 +31,20 @@ export type AlephConfig = {
  * We use this to configure which config to use for which domain
  *
  */
-export type AlephDomainConfig = {
-  [domain: string]: AlephDomainConfigEntry;
+export type PhronDomainConfig = {
+  [domain: string]: PhronDomainConfigEntry;
 };
 
 /**
  * Configuration for a single Aleph Zero domain
  */
-export type AlephDomainConfigEntry = {
+export type PhronDomainConfigEntry = {
   rpcUrl: string;
 };
 
 /**
  * Account specific storage
  */
-export type AlephWalletState = {
+export type PhronWalletState = {
   // TODO: Persist imported accounts
 };

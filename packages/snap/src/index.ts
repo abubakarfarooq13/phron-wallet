@@ -1,10 +1,10 @@
 import type { Json, OnRpcRequestHandler } from '@metamask/snaps-sdk';
 import type { JsonRpcRequest } from '@metamask/utils';
 import { initWasm } from '@polkadot/wasm-crypto/initOnlyAsm';
-import type { RequestMethod, RequestParameters } from 'azero-wallet-types';
-import { ResultObject } from 'azero-wallet-types';
+import type { RequestMethod, RequestParameters } from '../../types/src/index.js';
+import { ResultObject } from '../../types/src/index.js';
 
-import { PolkadotService } from './services/polkadot';
+import { PhronService } from './services/phron';
 import { SnapService } from './services/snap';
 import { StorageService } from './services/storage';
 
@@ -28,9 +28,9 @@ export const onRpcRequest: OnRpcRequestHandler = async ({
     await StorageService.init();
     console.log('StorageService initiated');
 
-    console.log('Initiating PolkadotService');
-    await PolkadotService.init();
-    console.log('PolkadotService initiated');
+    console.log('Initiating PhronService');
+    await PhronService.init();
+    console.log('PhronService initiated');
 
     return await SnapService.handleRpcRequest(
       origin,

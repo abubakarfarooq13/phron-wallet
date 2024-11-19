@@ -1,13 +1,13 @@
 import type { SnapsGlobalObject } from '@metamask/snaps-types';
-import { isError } from 'azero-wallet-types';
+import { isError } from 'phron-wallet-types';
 
 import { onRpcRequest } from '../../src';
-import { PolkadotService } from '../../src/services/polkadot';
+import { PhronService } from '../../src/services/phron';
 import type { SnapMock } from '../helpers/snapMock';
 import { createMockSnap } from '../helpers/snapMock';
 
 jest
-  .spyOn(PolkadotService, 'init')
+  .spyOn(PhronService, 'init')
   .mockImplementation(async () => Promise.resolve());
 
 describe('getAccount', () => {

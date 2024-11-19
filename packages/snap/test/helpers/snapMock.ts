@@ -7,7 +7,7 @@ import type { Maybe } from '@metamask/providers/dist/utils';
 import type { SnapsGlobalObject } from '@metamask/snaps-types';
 import { cryptoWaitReady } from '@polkadot/util-crypto';
 import { initWasm } from '@polkadot/wasm-crypto/initOnlyAsm';
-import type { AlephState } from 'azero-wallet-types';
+import type { PhronState } from 'phron-wallet-types';
 
 import { mnemonic } from '../data/constants';
 
@@ -21,9 +21,9 @@ type SnapManageState = {
 };
 
 export class SnapMock implements ISnapMock {
-  public snapState: AlephState | null = null;
+  public snapState: PhronState | null = null;
 
-  private snapManageState(params: SnapManageState): AlephState | null {
+  private snapManageState(params: SnapManageState): PhronState | null {
     if (!params) {
       return null;
     }
@@ -31,7 +31,7 @@ export class SnapMock implements ISnapMock {
       return this.snapState;
     }
     if (params.operation === 'update') {
-      this.snapState = params.newState as AlephState;
+      this.snapState = params.newState as PhronState;
     } else if (params.operation === 'clear') {
       this.snapState = null;
     }

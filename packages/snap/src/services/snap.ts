@@ -9,12 +9,12 @@ import type {
   SignSignerPayloadResult,
   TransferNativeAssetRequestParams,
   TransferNativeAssetResult,
-} from 'azero-wallet-types';
-import { ResultObject } from 'azero-wallet-types';
+} from '../../../types/src/index.js';
+import { ResultObject } from '../../../types/src/index.js';
 import { ethErrors } from 'eth-rpc-errors';
 
 import { getDefaultAddress } from '../account';
-import { PolkadotService } from './polkadot';
+import { PhronService } from './phron';
 import { StorageService } from './storage';
 
 export class SnapService {
@@ -71,14 +71,14 @@ export class SnapService {
   private static async signSignerPayloadHandler({
     payload,
   }: SignSignerPayloadRequestParams): Promise<SignSignerPayloadResult> {
-    const signature = await PolkadotService.signSignerPayload(payload);
+    const signature = await PhronService.signSignerPayload(payload);
     return { signature };
   }
 
   private static async signAndSendExtrinsicTransaction({
     payload,
   }: SignAndSendTransactionRequestParams): Promise<SignAndSendExtrinsicTransactionResult> {
-    const transaction = await PolkadotService.signAndSendExtrinsicTransaction(
+    const transaction = await PhronService.signAndSendExtrinsicTransaction(
       payload,
     );
     return { transaction };
@@ -89,12 +89,12 @@ export class SnapService {
     recipient,
   }: TransferNativeAssetRequestParams): Promise<TransferNativeAssetResult> {
     const sender = await getDefaultAddress();
-    const payload = await PolkadotService.makeTransferTxPayload(
+    const payload = await PhronService.makeTransferTxPayload(
       sender,
       recipient,
       amount,
     );
-    const transaction = await PolkadotService.signAndSendExtrinsicTransaction(
+    const transaction = await PhronService.signAndSendExtrinsicTransaction(
       payload,
     );
     return { transaction };
@@ -105,6 +105,6 @@ export class SnapService {
     { rpcUrl }: SetRpcUrlRequestParams,
   ) {
     await StorageService.setRpcUrl(origin, rpcUrl);
-    await PolkadotService.init(rpcUrl);
+    await PhronService.init(rpcUrl);
   }
 }

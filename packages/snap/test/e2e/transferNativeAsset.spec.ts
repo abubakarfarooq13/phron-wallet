@@ -2,16 +2,16 @@ import type { JsonRpcRequest, SnapsGlobalObject } from '@metamask/snaps-types';
 import {
   isError,
   type TransferNativeAssetRequestParams,
-} from 'azero-wallet-types';
+} from 'phron-wallet-types';
 
 import { onRpcRequest } from '../../src';
-import { PolkadotService } from '../../src/services/polkadot';
+import { PhronService } from '../../src/services/phron';
 import { fakeTransactionInfo, fakeTransactionPayload } from '../data/mocks';
 import type { SnapMock } from '../helpers/snapMock';
 import { createMockSnap } from '../helpers/snapMock';
 
 jest
-  .spyOn(PolkadotService, 'init')
+  .spyOn(PhronService, 'init')
   .mockImplementation(async () => Promise.resolve());
 
 describe('transferNativeAsset', () => {
@@ -24,12 +24,12 @@ describe('transferNativeAsset', () => {
   });
 
   it('should sign and send a transaction to transfer the native asset', async () => {
-    const polkadotInitSpy = jest.spyOn(PolkadotService, 'init');
+    const phronInitSpy = jest.spyOn(PhronService, 'init');
     const makeTransferTxSpy = jest
-      .spyOn(PolkadotService, 'makeTransferTxPayload')
+      .spyOn(PhronService, 'makeTransferTxPayload')
       .mockImplementation(async () => fakeTransactionPayload);
-    const polkadotSignAndSendSpy = jest
-      .spyOn(PolkadotService, 'signAndSendExtrinsicTransaction')
+    const phronSignAndSendSpy = jest
+      .spyOn(PhronService, 'signAndSendExtrinsicTransaction')
       .mockImplementation(async () => Promise.resolve(fakeTransactionInfo));
 
     const requestParams: TransferNativeAssetRequestParams = {
@@ -46,9 +46,9 @@ describe('transferNativeAsset', () => {
       } as JsonRpcRequest<TransferNativeAssetRequestParams>,
     }).then(JSON.parse);
 
-    expect(polkadotInitSpy).toHaveBeenCalled();
+    expect(phronInitSpy).toHaveBeenCalled();
     expect(makeTransferTxSpy).toHaveBeenCalled();
-    expect(polkadotSignAndSendSpy).toHaveBeenCalled();
+    expect(phronSignAndSendSpy).toHaveBeenCalled();
 
     if (isError(res)) {
       throw new Error(res.error);

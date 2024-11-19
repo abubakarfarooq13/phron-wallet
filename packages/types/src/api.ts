@@ -4,7 +4,7 @@ import type {
 } from './params.js';
 import type { Result, TransactionInfo } from './results.js';
 
-export type AlephApi = {
+export type PhronApi = {
   getAccount(): Promise<Result<string>>;
   signAndSendTransaction(
     payload: SignAndSendTransactionRequestParams,
