@@ -1,9 +1,9 @@
-# `azero-wallet-snap`
+# `phron-wallet-snap`
 
 This package contains type definitions shared by the
-[`azero-wallet-adapter`](../adapter) and [`azero-wallet`](../snap) packages.
+[`phron-wallet-adapter`](../adapter) and [`phron-wallet`](../snap) packages.
 
-Please refer to the [`azero-wallet-adapter`](../adapter) package for Aleph
+Please refer to the [`phron-wallet-adapter`](../adapter) package for Phron
 Wallet snap usage examples.
 
 ## License

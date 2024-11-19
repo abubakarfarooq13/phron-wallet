@@ -1,6 +1,6 @@
 export type PhronState = {
   /**
-   * Version 1 of Aleph snap state
+   * Version 1 of Phron snap state
    */
   v1: {
     /**
@@ -12,21 +12,21 @@ export type PhronState = {
      */
     currentAccount: string;
     /**
-     * Configuration for Aleph Zero
+     * Configuration for Phron
      */
     config: PhronConfig;
   };
 };
 
 /**
- * Configuration for Aleph Zero snap
+ * Configuration for Phron snap
  */
 export type PhronConfig = {
   domainConfig: PhronDomainConfig;
 };
 
 /**
- * Configuration for Aleph Zero domains
+ * Configuration for Phron domains
  *
  * We use this to configure which config to use for which domain
  *
@@ -36,7 +36,7 @@ export type PhronDomainConfig = {
 };
 
 /**
- * Configuration for a single Aleph Zero domain
+ * Configuration for a single Phron domain
  */
 export type PhronDomainConfigEntry = {
   rpcUrl: string;

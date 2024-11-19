@@ -1,7 +1,7 @@
 {
   "name": "phron-wallet-types",
   "version": "0.3.0",
-  "description": "Types for azero-wallet-snap",
+  "description": "Types for phron-wallet-snap",
   "keywords": [
     "phron",
     "zero",
@@ -11,10 +11,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bide-dev/azero-wallet"
+    "url": "https://github.com/phron-ai/phron-wallet"
   },
   "license": "GPL-3.0",
-  "author": "Piotr Roslaniec <p.roslaniec@gmail.com>",
+  "author": "PhronAI <abubakarfarooq13@gmail.com>",
   "exports": {
     ".": {
       "import": "./dist/es/index.js",
